@@ -1,15 +1,19 @@
 const USERID_KEY = 'USERID_KEY';
+const USERNAME_KEY = 'USERNAME_KEY';
 
 type SetUserProps = {
     userId: string;
+    username: string;
 };
 
-export function setUser({ userId }: SetUserProps) {
+export function setUser({ userId, username }: SetUserProps) {
     localStorage.setItem(USERID_KEY, String(userId));
+    localStorage.setItem(USERNAME_KEY, String(username));
 }
 
 export function removeAuthData() {
     localStorage.removeItem(USERID_KEY);
+    localStorage.removeItem(USERNAME_KEY);
 }
 
 export function getUserId() {

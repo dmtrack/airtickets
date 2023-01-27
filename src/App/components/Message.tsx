@@ -1,30 +1,16 @@
 import React from 'react';
-import { IUser } from '../interfaces/IUser';
+import { IMessage } from '../interfaces/IMessage';
 
-interface IUserProps {
-    user: IUser;
-    dataId: number[];
-    setDataId: any;
+interface IMessageProps {
+    message: IMessage;
 }
 
-function User({ user, dataId, setDataId }: IUserProps) {
-    const { id, nickname, email, registered, login, blocked } = user;
-
-    const chooseCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const id = parseInt(e.target.value);
-        if (dataId.includes(id)) {
-            const idCollection = dataId.filter((el) => el !== id);
-            setDataId(idCollection);
-        } else {
-            const idCollection = [...dataId];
-            idCollection.push(id);
-            setDataId(idCollection);
-        }
-    };
+function Message({ message }: IMessageProps) {
+    const { id, author, recepient, title, text, timestamp } = message;
 
     return (
         <>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            {/* <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td className="px-6 py-3">
                     <input
                         type="checkbox"
@@ -40,9 +26,9 @@ function User({ user, dataId, setDataId }: IUserProps) {
                 <td className="px-5 py-4">{registered}</td>
                 <td className="px-5 py-4">{login}</td>
                 <td className="px-5 py-4">{blocked ? 'blocked' : 'active'}</td>
-            </tr>
+            </tr> */}
         </>
     );
 }
 
-export { User };
+export { Message };

@@ -3,16 +3,19 @@ import { IError } from '../../interfaces/IAuth';
 import localStorageService from '../../utils/localStorage';
 
 interface IAuthState {
-    userId: string;
+    userId: number;
+    username: string;
     isAuth: boolean;
     error: string;
 }
 interface IAuthPayload {
-    userId: string;
+    username: string;
+    userId: number;
 }
 
 const initialState: IAuthState = {
-    userId: localStorageService.getUserId() ?? '',
+    userId: Number(localStorageService.getUserId() ?? null),
+    username: localStorageService.getUserId() ?? '',
     isAuth: Boolean(localStorageService.getUserId() ?? ''),
     error: '',
 };
@@ -23,14 +26,20 @@ export const authSlice = createSlice({
     reducers: {
         signIn(state, action: PayloadAction<IAuthPayload>) {
             state.userId = action.payload.userId;
+            state.username = action.payload.username;
             state.isAuth = Boolean(action.payload.userId);
-            localStorageService.setUser({ userId: action.payload.userId });
+            localStorageService.setUser({
+                userId: String(action.payload.userId),
+                username: action.payload.username,
+            });
         },
         fetchError(state, action: PayloadAction<IError>) {
             state.error = action.payload.response.data.message;
         },
         userLoggedOut(state) {
             state.isAuth = false;
+            state.userId = 0;
+            state.username = '';
         },
     },
 });

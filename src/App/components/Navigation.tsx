@@ -5,8 +5,7 @@ export function Navigation() {
     const { isAuth } = useAppSelector((state) => state.auth);
 
     return (
-        <nav className="flex px-5 h-[50px] bg-gray-200 justify-between opacity-70 items-center shadow-md">
-            <Link to="/">students</Link>
+        <nav className="flex px-5 h-[50px] justify-between opacity-70 items-center ">
             {isAuth && <Link to="/logout">logout</Link>}
         </nav>
     );

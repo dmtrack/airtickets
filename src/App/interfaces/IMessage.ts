@@ -1,16 +1,16 @@
-export interface IUser {
+export interface IMessage {
     id: number;
-    nickname: string;
-    email: string;
-    registered: string;
-    login: string;
-    blocked: boolean;
+    author: string;
+    title: string;
+    text: string;
+    recepient: string;
+    timestamp: number;
 }
 
-export interface IUserState {
+export interface IMessageState {
     loading: boolean;
     error: string;
-    users: IUser[];
+    messages: IMessage[];
 }
 
 export interface IServerResponce<T> {
@@ -23,8 +23,8 @@ export interface IServerResponce<T> {
     statusText: string;
 }
 
-export type UsersListProps = {
-    user: IUser[];
+export type MessagesListProps = {
+    user: IMessage[];
     loading: boolean;
 };
 

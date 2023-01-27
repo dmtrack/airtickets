@@ -4,29 +4,22 @@ import Button from '../components/button';
 import { useInput } from '../hook/input';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
-import { getDate } from '../utils/date';
 
 const LoginPage: React.FC = () => {
-    const { error } = useAppSelector((state) => state.auth);
-
     const navigate = useNavigate();
-    const email = useInput('');
-    const password = useInput('');
+    const username = useInput('');
     const dispatch = useAppDispatch();
 
-    const logindate =
-        getDate().day + '.' + getDate().month + 1 + '.' + getDate().year;
-
-    const isFormValid = () => email.value && password.value;
+    const isFormValid = () => username.value;
 
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
         if (isFormValid()) {
+            console.log(username.value);
+
             dispatch(
                 login({
-                    email: email.value,
-                    password: password.value,
-                    login: logindate,
+                    username: username.value,
                 })
             )
                 .then(() => navigate('/'))
@@ -41,32 +34,15 @@ const LoginPage: React.FC = () => {
             onSubmit={submitHandler}
         >
             <div className="">
-                <label className="block" htmlFor="email">
-                    email
+                <label className="block" htmlFor="username">
+                    username
                 </label>
                 <input
                     className="border py-1 px-2 w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
                     type="text"
-                    {...email}
-                    id="email"
+                    {...username}
+                    id="username"
                 />
-                <label className="block" htmlFor="password">
-                    password
-                </label>
-                <input
-                    className="border py-1 px-2 w-full  text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-                    type="password"
-                    {...password}
-                    id="password"
-                />
-                {error && (
-                    <p
-                        className="pt-5
-             text-sm text-left text-red-500 dark:text-red-400 mx-auto"
-                    >
-                        {error}
-                    </p>
-                )}
 
                 <div className="py-4">
                     <Button
@@ -75,7 +51,7 @@ const LoginPage: React.FC = () => {
                         size="sm"
                         type="submit"
                     >
-                        submit
+                        Enter
                     </Button>
                 </div>
             </div>
