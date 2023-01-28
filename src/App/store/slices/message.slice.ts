@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMessage, IMessageState } from '../../interfaces/IMessage';
+import {
+    ICreateMessage,
+    IMessage,
+    IMessageState,
+} from '../../interfaces/IMessage';
 
 const initialState: IMessageState = {
     loading: false,
@@ -24,6 +28,7 @@ export const messageSlice = createSlice({
             state.loading = false;
             state.messages = action.payload;
         },
+        createMessage(state, action: PayloadAction<ICreateMessage>) {},
         fetchError(state, action: PayloadAction<Error>) {
             state.loading = false;
             state.error = action.payload.message + ': ' + action.payload?.cause;

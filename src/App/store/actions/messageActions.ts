@@ -1,6 +1,10 @@
 import { messageSlice } from '../slices/message.slice';
 import { AppDispatch } from '..';
-import { IMessage, IMessageState } from '../../interfaces/IMessage';
+import {
+    ICreateMessage,
+    IMessage,
+    IMessageState,
+} from '../../interfaces/IMessage';
 import localStorageService from '../../utils/localStorage';
 import ky from 'ky';
 const URL = process.env.REACT_APP_BASE_URL;
@@ -24,6 +28,21 @@ export const fetchMessages = (username: string) => {
         }
     };
 };
+
+export const createSocketMessage = (message: ICreateMessage) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(messageSlice.actions.fetching());
+            const message: any = await ky
+                .post(`${URL}/createsocketmessage`)
+                .json();
+            dispatch(messageSlice.actions.createMessage(message));
+        } catch (e) {
+            dispatch(messageSlice.actions.fetchError(e as Error));
+        }
+    };
+};
+
 export const setInbox = (username: string | null) => {
     return async (dispatch: AppDispatch) => {
         try {

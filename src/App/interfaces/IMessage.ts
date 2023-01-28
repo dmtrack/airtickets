@@ -7,6 +7,14 @@ export interface IMessage {
     timestamp: number;
 }
 
+export interface ICreateMessage {
+    author: string;
+    title: string;
+    text: string;
+    recepient: string;
+    timestamp: number;
+}
+
 export interface IMessageState {
     loading: boolean;
     error: string;

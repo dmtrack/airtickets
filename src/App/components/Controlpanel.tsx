@@ -1,9 +1,9 @@
-import ArchiveIcon from '@mui/icons-material/Archive';
-import UnarchiveIcon from '@mui/icons-material/Unarchive';
-import Card from '@mui/material/Card';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
 import { setInbox, setOutbox } from '../store/actions/messageActions';
 import localStorageService from '../utils/localStorage';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const ControlPanel: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -15,14 +15,18 @@ const ControlPanel: React.FC = () => {
         dispatch(setOutbox(username));
     };
     return (
-        <Card sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button onClick={selectInbox}>
-                <ArchiveIcon fontSize={'large'} sx={{ marginLeft: '5px' }} />
-            </button>
-            <button onClick={selectOutbox}>
-                <UnarchiveIcon fontSize={'large'} sx={{ marginLeft: '5px' }} />
-            </button>
-        </Card>
+        <>
+            {' '}
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <ButtonGroup
+                    variant="outlined"
+                    aria-label="outlined primary button group"
+                >
+                    <Button onClick={selectInbox}>Inbox</Button>
+                    <Button onClick={selectOutbox}>Outbox</Button>
+                </ButtonGroup>{' '}
+            </Box>
+        </>
     );
 };
 

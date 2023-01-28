@@ -34,9 +34,7 @@ export const ChatPage: React.FC = () => {
                                 </div>
                                 <div className="w-2"></div>
                                 <div className="w-10">
-                                    RightSide{' '}
                                     <div className="flex-row">
-                                        <RecepientSelect />
                                         <NewMessagePanel />
                                     </div>
                                 </div>
