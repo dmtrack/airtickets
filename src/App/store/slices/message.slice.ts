@@ -5,7 +5,13 @@ const initialState: IMessageState = {
     loading: false,
     error: '',
     messages: [],
+    option: 'inbox',
 };
+
+interface IMessagesOptions {
+    messages: IMessage[];
+    username: string | null;
+}
 
 export const messageSlice = createSlice({
     name: 'messages',
@@ -21,6 +27,18 @@ export const messageSlice = createSlice({
         fetchError(state, action: PayloadAction<Error>) {
             state.loading = false;
             state.error = action.payload.message + ': ' + action.payload?.cause;
+        },
+        setInboxMessages(state, action: PayloadAction<IMessagesOptions>) {
+            state.option = 'inbox';
+            state.messages = state.messages.filter(
+                (m) => m.recepient === action.payload.username
+            );
+        },
+        setOutboxMessages(state, action: PayloadAction<IMessagesOptions>) {
+            state.option = 'outbox';
+            state.messages = state.messages.filter(
+                (m) => m.author === action.payload.username
+            );
         },
     },
 });

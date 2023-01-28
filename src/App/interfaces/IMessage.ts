@@ -11,6 +11,7 @@ export interface IMessageState {
     loading: boolean;
     error: string;
     messages: IMessage[];
+    option: string;
 }
 
 export interface IServerResponce<T> {
@@ -24,8 +25,13 @@ export interface IServerResponce<T> {
 }
 
 export type MessagesListProps = {
-    user: IMessage[];
+    mesages: IMessage[];
     loading: boolean;
 };
 
 export type DeleteUserProp = string[];
+
+export interface IMessagesOptions {
+    messages: IMessage[];
+    username: string | null;
+}

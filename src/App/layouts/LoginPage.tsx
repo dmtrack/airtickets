@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/UI/Button';
 import { useInput } from '../hook/input';
-import { useAppDispatch, useAppSelector } from '../hook/redux';
+import { useAppDispatch } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
 
 const LoginPage: React.FC = () => {
@@ -10,13 +10,10 @@ const LoginPage: React.FC = () => {
     const username = useInput('');
     const dispatch = useAppDispatch();
 
-    const isFormValid = () => username.value;
-
+    const isFormValid = (): string => username.value;
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
         if (isFormValid()) {
-            console.log(username.value);
-
             dispatch(
                 login({
                     username: username.value,

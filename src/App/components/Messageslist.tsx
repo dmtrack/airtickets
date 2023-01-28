@@ -1,33 +1,19 @@
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hook/redux';
-import { IMessage } from '../interfaces/IMessage';
-import { logOut } from '../store/actions/auth.actions';
-import { messageSlice } from '../store/slices/message.slice';
+import { useAppSelector } from '../hook/redux';
 import Message from './Message';
 
-interface IMessagesListProps {
-    messages: IMessage[];
-}
-const URL = process.env.REACT_APP_BASE_URL;
-
-const MessagesList = (messagesProps: IMessagesListProps) => {
+const MessagesList = () => {
     const { messages } = useAppSelector((state) => state.messages);
-    const { userId } = useAppSelector((state) => state.auth);
 
-    const dispatch = useAppDispatch();
-
-    // function handleChange(): void {
-    //     setChecked((prevState) => !prevState);
-    //     if (dataId.length !== messages.length) {
-    //         const idCollection: number[] = [];
-    //         messages.forEach((u: IMessage) => {
-    //             idCollection.push(u.id);
-    //         });
-    //         setDataId(idCollection);
-    //     } else setDataId([]);
-    // }
-
-    return <div>MessagesList</div>;
+    return (
+        <div className="container">
+            {messages &&
+                messages.map((message) => (
+                    <div className="m-2" key={message.id}>
+                        <Message message={message} />
+                    </div>
+                ))}
+        </div>
+    );
 };
 
 export default MessagesList;
