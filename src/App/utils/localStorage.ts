@@ -19,9 +19,15 @@ export function removeAuthData() {
 export function getUserId() {
     return localStorage.getItem(USERID_KEY);
 }
+
+export function getUserName() {
+    return localStorage.getItem(USERNAME_KEY);
+}
 const localStorageService = {
     getUserId,
+    getUserName,
     removeAuthData,
     setUser,
 };
+
 export default localStorageService;

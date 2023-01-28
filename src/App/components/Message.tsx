@@ -31,4 +31,4 @@ function Message({ message }: IMessageProps) {
     );
 }
 
-export { Message };
+export default Message;

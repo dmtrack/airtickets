@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { MessagesList } from '../components/Messageslist';
+import ControlPanel from '../components/Controlpanel';
+import MessagesList from '../components/Messageslist';
+import NewMessagePanel from '../components/Newmessageanel';
+import RecepientSelect from '../components/UI/Recepientselect';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
 import { fetchMessages } from '../store/actions/messageActions';
 
@@ -16,13 +19,39 @@ export const ChatPage: React.FC = () => {
         <>
             <div>
                 {loading && <p className="text-center text-lg">Loading...</p>}
-
-                <MessagesList messages={messages} />
                 {error && (
                     <p className="pt-10 text-center text-lg text-red-500">
                         {error}
                     </p>
                 )}
+                <div className="container mx-auto">
+                    <div className="relative overflow-x-auto ">
+                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead>
+                                <tr>
+                                    <th scope="col" className="w-5">
+                                        LeftSide
+                                    </th>
+                                    <th scope="col" className="w-10">
+                                        RightSide
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td>
+                                    {' '}
+                                    <ControlPanel />
+                                    <MessagesList messages={messages} />
+                                </td>
+                                <td>
+                                    {' '}
+                                    <RecepientSelect />
+                                    <NewMessagePanel />
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </>
     );

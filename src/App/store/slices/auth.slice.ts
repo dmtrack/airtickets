@@ -9,13 +9,13 @@ interface IAuthState {
     error: string;
 }
 interface IAuthPayload {
-    username: string;
     userId: number;
+    username: string;
 }
 
 const initialState: IAuthState = {
     userId: Number(localStorageService.getUserId() ?? null),
-    username: localStorageService.getUserId() ?? '',
+    username: localStorageService.getUserName() ?? '',
     isAuth: Boolean(localStorageService.getUserId() ?? ''),
     error: '',
 };

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../hook/redux';
 import { ChatPage } from './ChatPage';
 
-export function MainPage() {
+const MainPage: React.FC = () => {
     const { isAuth } = useAppSelector((state) => state.auth);
     const navigate = useNavigate();
 
@@ -24,4 +24,6 @@ export function MainPage() {
             )}
         </>
     );
-}
+};
+
+export default MainPage;

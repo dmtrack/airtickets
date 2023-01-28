@@ -1,13 +1,9 @@
-import { StateFromReducersMapObject } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
-
 import { IMessage } from '../interfaces/IMessage';
 import { logOut } from '../store/actions/auth.actions';
 import { messageSlice } from '../store/slices/message.slice';
-import Button from './button';
-import { Message } from './Message';
+import Message from './Message';
 
 interface IMessagesListProps {
     messages: IMessage[];
@@ -31,7 +27,7 @@ const MessagesList = (messagesProps: IMessagesListProps) => {
     //     } else setDataId([]);
     // }
 
-    return <></>;
+    return <div>MessagesList</div>;
 };
 
-export { MessagesList };
+export default MessagesList;

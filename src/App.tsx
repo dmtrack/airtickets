@@ -1,10 +1,9 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import { Navigation } from './App/components/Navigation';
-import LogOut from './App/components/LogOut';
-import { MainPage } from './App/layouts/Mainpage';
-import { LoginPage } from './App/layouts/LoginPage';
-import { ChatPage } from './App/layouts/ChatPage';
+import Navigation from './App/components/Navigation';
+import MainPage from './App/layouts/Mainpage';
+import LoginPage from './App/layouts/LoginPage';
+import LogOut from './App/components/Logout';
 
 const App: React.FC = () => {
     return (
@@ -12,8 +11,8 @@ const App: React.FC = () => {
             <Router>
                 <Navigation />
                 <Routes>
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/" element={<ChatPage />} />
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/main" element={<MainPage />} />
                     <Route path="/logout" element={<LogOut />} />
                 </Routes>
             </Router>

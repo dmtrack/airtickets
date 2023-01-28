@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../components/button';
+import Button from '../components/UI/Button';
 import { useInput } from '../hook/input';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
                     username: username.value,
                 })
             )
-                .then(() => navigate('/'))
+                .then(() => navigate('/main'))
                 .catch((e) => console.log(e.message));
         } else alert('Please, fill up all fields');
     };
@@ -59,4 +59,4 @@ const LoginPage: React.FC = () => {
     );
 };
 
-export { LoginPage };
+export default LoginPage;

@@ -9,7 +9,7 @@ const LogOut = () => {
     useEffect(() => {
         console.log('logout');
         dispatch(logOut());
-        navigate('/login');
+        navigate('/');
     }, []);
     return (
         <h1 className="text-sm text-left text-gray-500 dark:text-gray-400 mx-auto max-w-[300px]">
