@@ -9,14 +9,10 @@ import localStorageService from '../../utils/localStorage';
 import ky from 'ky';
 const URL = process.env.REACT_APP_BASE_URL;
 
-export const fetchMessages = (username: string) => {
+export const fetchMessages = (messages: IMessage[], username: string) => {
     return async (dispatch: AppDispatch) => {
         try {
-            dispatch(messageSlice.actions.fetching());
-            const messages: any = await ky
-                .get(`${URL}/getmessages?username=${username}`)
-                .json();
-            dispatch(messageSlice.actions.fetchSuccess(messages.data));
+            dispatch(messageSlice.actions.fetchSuccess(messages));
             dispatch(
                 messageSlice.actions.setInboxMessages({
                     username: username,
@@ -28,6 +24,26 @@ export const fetchMessages = (username: string) => {
         }
     };
 };
+
+// export const fetchMessages = (username: string) => {
+//     return async (dispatch: AppDispatch) => {
+//         try {
+//             dispatch(messageSlice.actions.fetching());
+//             const messages: any = await ky
+//                 .get(`${URL}/getmessages?username=${username}`)
+//                 .json();
+//             dispatch(messageSlice.actions.fetchSuccess(messages.data));
+//             dispatch(
+//                 messageSlice.actions.setInboxMessages({
+//                     username: username,
+//                     messages: messages,
+//                 })
+//             );
+//         } catch (e) {
+//             dispatch(messageSlice.actions.fetchError(e as Error));
+//         }
+//     };
+// };
 
 export const createSocketMessage = (message: ICreateMessage) => {
     return async (dispatch: AppDispatch) => {

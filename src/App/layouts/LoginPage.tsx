@@ -4,6 +4,7 @@ import Button from '../components/UI/Button';
 import { useInput } from '../hook/input';
 import { useAppDispatch } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
+import { connect } from '../utils/wss.connection';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();

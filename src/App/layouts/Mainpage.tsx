@@ -9,7 +9,7 @@ const MainPage: React.FC = () => {
 
     useEffect(() => {
         if (!isAuth) {
-            navigate('/login');
+            navigate('/');
         }
     }, [isAuth]);
 
