@@ -60,8 +60,8 @@ const CreateMessage: React.FC<ICreateMessageProps> = ({
                     id="text"
                     label="Text"
                     multiline
-                    maxRows={10}
-                    minRows={10}
+                    maxRows={11}
+                    minRows={11}
                     onChange={(e) => {
                         setText(e.target.value);
                     }}
