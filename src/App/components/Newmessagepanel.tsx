@@ -4,46 +4,52 @@ import { useState } from 'react';
 import CreateMessage from './CreateMessage';
 import SendIcon from '@mui/icons-material/Send';
 import { ISendMessageProps } from '../interfaces/IMessage';
+import { createStateMessage } from '../store/actions/messageActions';
 
 const NewMessagePanel: React.FC<ISendMessageProps> = (
     props: ISendMessageProps
 ) => {
     const { username } = useAppSelector((state) => state.auth);
-    const { sendMessage } = props;
     const dispatch = useAppDispatch();
+
+    const { sendMessage } = props;
+
     const [recepient, setRecepient] = useState('');
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
 
+    const handleClear = (event: any) => {
+        setRecepient('');
+        setText('');
+        setTitle('');
+    };
+
     const isFormValid = (): string => recepient && title && text;
     const submitSending = (event: React.FormEvent) => {
-        event.preventDefault();
-        sendMessage({
-            author: 'ivan',
-            recepient: 'olga',
-            title: '9 message',
-            text: 'This is 9!',
-            timestamp: Math.floor(Date.now() / 1000),
-        });
-        // if (isFormValid()) {
-        // dispatch(
-        //     createSocketMessage({
-        //         author: 'ivan',
-        //         recepient: 'dmtrack',
-        //         title: 'fifthmessage',
-        //         text: 'Hello world!',
-        //         timestamp: Date.now(),
-        //     })
-        // ).catch((e: Error) => console.log(e.message));
-        // } else alert('Please, fill up all fields');
+        if (isFormValid()) {
+            event.preventDefault();
+            sendMessage({
+                author: username,
+                recepient: recepient,
+                title: title,
+                text: text,
+                timestamp: Math.floor(Date.now() / 1000),
+            });
+            handleClear(event);
+        } else alert('fillup all fields');
     };
 
     return (
         <form className="flex-wrap ">
-            <CreateMessage setTitlet={setTitle} />
-            <div className="text-center">
+            <CreateMessage
+                setTitle={setTitle}
+                setText={setText}
+                setRecepient={setRecepient}
+                recepient={recepient}
+            />
+            <div className="text-end">
                 <button onClick={submitSending}>
-                    <SendIcon sx={{ fontSize: 40 }} />
+                    <SendIcon sx={{ fontSize: 40, mr: '15px' }} />
                 </button>
             </div>
         </form>

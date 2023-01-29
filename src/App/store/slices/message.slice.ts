@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import produce from 'immer';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import {
     ICreateMessage,
     IMessage,
@@ -29,7 +30,13 @@ export const messageSlice = createSlice({
             state.messages = action.payload;
         },
         createMessage(state, action: PayloadAction<ICreateMessage>) {
-            state.messages = [...state.messages, action.payload];
+            if (!state.messages.find((m) => m.id === action.payload.id)) {
+                state.messages = [...state.messages, action.payload];
+            }
+
+            produce(state.messages, (draft) => {
+                draft.push(action.payload);
+            });
         },
         fetchError(state, action: PayloadAction<Error>) {
             state.loading = false;

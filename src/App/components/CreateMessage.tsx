@@ -4,12 +4,21 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React, { useEffect, useState } from 'react';
 import { IUser } from '../interfaces/IUsers';
 import { fetchUsers } from '../store/actions/user.actions';
+import { ICreateMessageProps } from '../interfaces/IMessage';
+import { InputAdornment } from '@mui/material';
 
-const CreateMessage = (setTitle: any) => {
+const CreateMessage: React.FC<ICreateMessageProps> = ({
+    setText,
+    setTitle,
+    setRecepient,
+    recepient,
+}: ICreateMessageProps) => {
     const [users, setUsers] = useState([]);
+    const userNames = users.map((user: IUser) => user.username);
     useEffect(() => {
         fetchUsers().then((data) => setUsers(data.data));
     }, []);
+    const [value, setSelectedValue] = useState<string | null>('');
 
     const handleTitleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,23 +31,23 @@ const CreateMessage = (setTitle: any) => {
             <Stack spacing={1} sx={{ minWidth: 400, marginTop: '44px', mr: 2 }}>
                 <Autocomplete
                     freeSolo
-                    id="free-solo-2-demo"
-                    disableClearable
-                    options={users.map((user: IUser) => user.username)}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            // onChange={(e) => {
-                            //     setRecepient(e.target.value);
-                            // }}
-                            label="Recepient"
-                            InputProps={{
-                                ...params.InputProps,
-                                type: 'search',
-                            }}
-                        />
-                    )}
+                    disablePortal
+                    options={userNames}
+                    value={recepient}
+                    onChange={(_, newValue) => setSelectedValue}
+                    inputValue={recepient}
+                    onInputChange={(_, newInputValue) =>
+                        setRecepient(newInputValue)
+                    }
+                    renderInput={(params) => {
+                        params.InputProps.startAdornment = (
+                            <InputAdornment position="start"></InputAdornment>
+                        );
+                        return <TextField {...params} label="Recepient" />;
+                    }}
+                    getOptionLabel={(option) => option}
                 />
+
                 <TextField
                     id="outlined-basic"
                     label="Title"
@@ -53,9 +62,9 @@ const CreateMessage = (setTitle: any) => {
                     multiline
                     maxRows={10}
                     minRows={10}
-                    // onChange={(e) => {
-                    //     setText(e.target.value);
-                    // }}
+                    onChange={(e) => {
+                        setText(e.target.value);
+                    }}
                 />
             </Stack>
         </>

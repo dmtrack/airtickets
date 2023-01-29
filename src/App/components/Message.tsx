@@ -6,6 +6,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../hook/redux';
+import { Stack } from '@mui/system';
+import Box from '@mui/material/Box';
 
 interface IMessageProps {
     message: IMessage;
@@ -29,19 +31,62 @@ function Message({ message }: IMessageProps) {
                     id="panel1a-header"
                 >
                     <Typography component={'span'}>
-                        <div>{title}</div>
-                        <div>date: {formatedDate}</div>
                         <div>
                             {option === 'inbox' ? (
-                                <div>from: {author}</div>
+                                <div>
+                                    <div className="">
+                                        <Box>
+                                            <span className="font-semibold ">
+                                                from:
+                                            </span>
+                                            <span className="font-thin">
+                                                _{author}
+                                            </span>
+                                        </Box>
+
+                                        <Box>
+                                            <span className="font-semibold">
+                                                date:
+                                            </span>{' '}
+                                            <span className="font-thin">
+                                                {formatedDate}
+                                            </span>
+                                        </Box>
+                                    </div>
+                                </div>
                             ) : (
-                                <div>to: {recepient}</div>
+                                <div>
+                                    <div className="">
+                                        <Box>
+                                            <span className="font-semibold">
+                                                to:
+                                            </span>
+                                            <span className="font-thin">
+                                                _{recepient}
+                                            </span>
+                                        </Box>
+                                        <Box>
+                                            <span className="font-semibold">
+                                                date:
+                                            </span>{' '}
+                                            <span className="font-thin">
+                                                {formatedDate}
+                                            </span>
+                                        </Box>
+                                    </div>
+                                </div>
                             )}
+                        </div>
+                        <div>
+                            <span className="font-semibold">Subject:</span>{' '}
+                            <span className="font-thin">{title}</span>
                         </div>
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>{text}</Typography>
+                    <Typography>
+                        <span className="font-style: italic">{text}</span>
+                    </Typography>
                 </AccordionDetails>
             </Accordion>
         </div>

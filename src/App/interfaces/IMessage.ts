@@ -48,3 +48,10 @@ export interface IMessagesOptions {
 export interface ISendMessageProps {
     sendMessage: (params: any) => any;
 }
+
+export interface ICreateMessageProps {
+    setRecepient: (params: any) => any;
+    setTitle: (params: any) => any;
+    setText: (params: any) => any;
+    recepient: string;
+}

@@ -1,49 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import ControlPanel from '../components/Controlpanel';
 import MessagesList from '../components/Messageslist';
 import NewMessagePanel from '../components/Newmessagepanel';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
 import { ICreateMessage } from '../interfaces/IMessage';
-import {
-    createStateMessage,
-    fetchMessages,
-} from '../store/actions/messageActions';
+import { createStateMessage, setInbox } from '../store/actions/messageActions';
+import socket from '../utils/socket';
 
 export const ChatPage: React.FC = () => {
     const dispatch = useAppDispatch();
     const { username } = useAppSelector((state) => state.auth);
     const { loading, error } = useAppSelector((state) => state.messages);
-    const ws = new WebSocket('ws://localhost:8000');
-    ws.onopen = () => {
-        const message = {
-            event: 'connection',
-            username: username,
-        };
-        ws.send(JSON.stringify(message));
-        console.log('connection opened');
-
-        // dispatch(fetchMessages(username));
-    };
 
     const sendMessage = (message: ICreateMessage) => {
-        const newmessage = {
-            event: 'message',
-            username: username,
-            data: message,
-        };
-
-        ws.send(JSON.stringify(newmessage));
+        socket.emit('MESSAGE:CREATED', message);
     };
-
-    // useEffect(() => {
-
-    //     // dispatch(fetchMessages(username));
-    // }, []);
+    useEffect(() => {
+        dispatch(setInbox(username));
+    }, []);
 
     useEffect(() => {
-        ws.addEventListener('message', (e) => {
-            dispatch(fetchMessages(JSON.parse(e.data), username));
-            console.log('message received');
+        socket.on('MESSAGE:DELIVERED', (message) => {
+            dispatch(createStateMessage(message));
+            console.log(message);
         });
     }, []);
 
@@ -83,3 +62,28 @@ export const ChatPage: React.FC = () => {
         </>
     );
 };
+
+// const ws = new WebSocket('ws://localhost:8000');
+// ws.onopen = () => {
+//     const message = {
+//         event: 'connection',
+//         username: username,
+//     };
+//     ws.send(JSON.stringify(message));
+//     console.log('connection opened');
+
+//     // dispatch(fetchMessages(username));
+// };
+
+// useEffect(() => {
+
+//     // dispatch(fetchMessages(username));
+// }, []);
+
+// useEffect(() => {
+// ws.addEventListener('message', (e) => {
+// console.log(e.data);
+// dispatch(createStateMessage(JSON.parse(e.data)));
+// console.log('message received');
+// });
+// }, []);

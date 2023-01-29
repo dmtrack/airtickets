@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/UI/Button';
 import { useInput } from '../hook/input';
 import { useAppDispatch } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
-import { connect } from '../utils/wss.connection';
+import { fetchMessages } from '../store/actions/messageActions';
+import socket from '../utils/socket';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -22,8 +23,19 @@ const LoginPage: React.FC = () => {
             )
                 .then(() => navigate('/main'))
                 .catch((e) => console.log(e.message));
+            socket.emit('USER:JOIN', username);
         } else alert('Please, fill up all fields');
+        socket.on('MESSAGES:RECEIVED', (messages) => {
+            console.log(messages);
+            dispatch(fetchMessages(messages, username.value));
+        });
     };
+
+    useEffect(() => {
+        return () => {
+            socket.removeAllListeners();
+        };
+    }, []);
 
     return (
         <form
