@@ -8,6 +8,7 @@ export interface IMessage {
 }
 
 export interface ICreateMessage {
+    id: number;
     author: string;
     title: string;
     text: string;
@@ -42,4 +43,8 @@ export type DeleteUserProp = string[];
 export interface IMessagesOptions {
     messages: IMessage[];
     username: string | null;
+}
+
+export interface ISendMessageProps {
+    sendMessage: (params: any) => any;
 }

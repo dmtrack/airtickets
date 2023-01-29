@@ -28,7 +28,9 @@ export const messageSlice = createSlice({
             state.loading = false;
             state.messages = action.payload;
         },
-        createMessage(state, action: PayloadAction<ICreateMessage>) {},
+        createMessage(state, action: PayloadAction<ICreateMessage>) {
+            state.messages = [...state.messages, action.payload];
+        },
         fetchError(state, action: PayloadAction<Error>) {
             state.loading = false;
             state.error = action.payload.message + ': ' + action.payload?.cause;

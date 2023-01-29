@@ -59,6 +59,16 @@ export const createSocketMessage = (message: ICreateMessage) => {
     };
 };
 
+export const createStateMessage = (message: ICreateMessage) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(messageSlice.actions.createMessage(message));
+        } catch (e) {
+            dispatch(messageSlice.actions.fetchError(e as Error));
+        }
+    };
+};
+
 export const setInbox = (username: string | null) => {
     return async (dispatch: AppDispatch) => {
         try {

@@ -12,7 +12,12 @@ interface IMessageProps {
 }
 
 function Message({ message }: IMessageProps) {
-    const { id, author, recepient, title, text, timestamp } = message;
+    let { author, recepient, title, text, timestamp } = message;
+    let date = new Date(timestamp * 1000);
+    let formatedDate = `${date.getDate()}.${
+        date.getMonth() + 1
+    } / ${date.getHours()}:${date.getMinutes()}`;
+
     const { option } = useAppSelector((state) => state.messages);
 
     return (
@@ -25,7 +30,7 @@ function Message({ message }: IMessageProps) {
                 >
                     <Typography component={'span'}>
                         <div>{title}</div>
-                        <div>date: {timestamp}</div>
+                        <div>date: {formatedDate}</div>
                         <div>
                             {option === 'inbox' ? (
                                 <div>from: {author}</div>

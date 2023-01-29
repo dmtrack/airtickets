@@ -2,11 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import ControlPanel from '../components/Controlpanel';
 import MessagesList from '../components/Messageslist';
 import NewMessagePanel from '../components/Newmessagepanel';
-import RecepientSelect from '../components/UI/Recepientselect';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
-import { fetchMessages } from '../store/actions/messageActions';
-import { connect } from '../utils/wss.connection';
-import { IMessage } from '../interfaces/IMessage';
+import { ICreateMessage } from '../interfaces/IMessage';
+import {
+    createStateMessage,
+    fetchMessages,
+} from '../store/actions/messageActions';
 
 export const ChatPage: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -24,6 +25,16 @@ export const ChatPage: React.FC = () => {
         // dispatch(fetchMessages(username));
     };
 
+    const sendMessage = (message: ICreateMessage) => {
+        const newmessage = {
+            event: 'message',
+            username: username,
+            data: message,
+        };
+
+        ws.send(JSON.stringify(newmessage));
+    };
+
     // useEffect(() => {
 
     //     // dispatch(fetchMessages(username));
@@ -32,6 +43,7 @@ export const ChatPage: React.FC = () => {
     useEffect(() => {
         ws.addEventListener('message', (e) => {
             dispatch(fetchMessages(JSON.parse(e.data), username));
+            console.log('message received');
         });
     }, []);
 
@@ -47,19 +59,20 @@ export const ChatPage: React.FC = () => {
                 <div className="container mx-auto">
                     <div className="relative overflow-x-auto ">
                         <div className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <div className="flex">
-                                <div className="w-5"></div>
-                                <div className="flex-row ju">
+                            <div className="flex h-500px overflow-y-auto justify-center">
+                                <div className="flex-row">
                                     {' '}
                                     <ControlPanel />
                                     <MessagesList />
                                 </div>
                                 <div className="w-2"></div>
-                                <div className="w-10">
-                                    <div className="flex-row">
-                                        <NewMessagePanel />
-                                    </div>
+
+                                <div className="flex-row">
+                                    <NewMessagePanel
+                                        sendMessage={sendMessage}
+                                    />
                                 </div>
+                                <div className="w-4"></div>
                             </div>
 
                             <div></div>
