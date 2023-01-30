@@ -22,7 +22,6 @@ export const ChatPage: React.FC = () => {
     useEffect(() => {
         socket.on('MESSAGE:DELIVERED', (message) => {
             dispatch(createStateMessage(message));
-            console.log(message);
         });
     }, []);
 
