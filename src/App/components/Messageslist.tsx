@@ -6,11 +6,12 @@ const MessagesList = () => {
     const { messages } = useAppSelector((state) => state.messages);
     const { option } = useAppSelector((state) => state.messages);
     const filterMessages = messages.filter((m) => {
-        if (m.recepient === m.author) return true;
+        if (m.recepient === m.author && m.recepient !== username) return false;
         return option === 'inbox'
             ? m.recepient === username
             : m.author === username;
     });
+
     return (
         <div className="container">
             {messages &&

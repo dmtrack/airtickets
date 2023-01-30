@@ -31,7 +31,7 @@ export const messageSlice = createSlice({
         },
         createMessage(state, action: PayloadAction<ICreateMessage>) {
             if (!state.messages.find((m) => m.id === action.payload.id)) {
-                state.messages = [...state.messages, action.payload];
+                state.messages = [action.payload, ...state.messages];
             }
 
             produce(state.messages, (draft) => {
