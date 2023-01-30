@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { setupStore } from './App/store';
 
 const store = setupStore();
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
