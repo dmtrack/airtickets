@@ -42,7 +42,7 @@
             "react-app/jest"
         ]
     },
-    "proxy": "https://email-server3.onrender.com",
+    "proxy": "wss://email-server3.onrender.com/",
     "browserslist": {
         "production": [
             ">0.2%",
