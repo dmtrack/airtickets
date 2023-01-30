@@ -41,6 +41,7 @@
             "react-app/jest"
         ]
     },
+    "proxy": "https://email-server-tt4q.onrender.com",
     "browserslist": {
         "production": [
             ">0.2%",
