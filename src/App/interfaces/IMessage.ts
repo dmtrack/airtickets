@@ -54,4 +54,6 @@ export interface ICreateMessageProps {
     setTitle: (params: any) => any;
     setText: (params: any) => any;
     recepient: string;
+    text: string;
+    title: string;
 }

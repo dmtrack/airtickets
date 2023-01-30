@@ -43,7 +43,9 @@ const NewMessagePanel: React.FC<ISendMessageProps> = (
         <form className="flex-wrap ">
             <CreateMessage
                 setTitle={setTitle}
+                title={title}
                 setText={setText}
+                text={text}
                 setRecepient={setRecepient}
                 recepient={recepient}
             />

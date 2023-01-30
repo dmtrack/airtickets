@@ -12,6 +12,8 @@ const CreateMessage: React.FC<ICreateMessageProps> = ({
     setTitle,
     setRecepient,
     recepient,
+    title,
+    text,
 }: ICreateMessageProps) => {
     const [users, setUsers] = useState([]);
     const userNames = users.map((user: IUser) => user.username);
@@ -52,6 +54,7 @@ const CreateMessage: React.FC<ICreateMessageProps> = ({
                     id="outlined-basic"
                     label="Title"
                     variant="outlined"
+                    value={title}
                     onChange={(e) => {
                         handleTitleChange(e);
                     }}
@@ -60,6 +63,7 @@ const CreateMessage: React.FC<ICreateMessageProps> = ({
                     id="text"
                     label="Text"
                     multiline
+                    value={text}
                     maxRows={11}
                     minRows={11}
                     onChange={(e) => {
