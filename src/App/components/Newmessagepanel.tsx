@@ -4,13 +4,11 @@ import { useState } from 'react';
 import CreateMessage from './CreateMessage';
 import SendIcon from '@mui/icons-material/Send';
 import { ISendMessageProps } from '../interfaces/IMessage';
-import { createStateMessage } from '../store/actions/messageActions';
 
 const NewMessagePanel: React.FC<ISendMessageProps> = (
     props: ISendMessageProps
 ) => {
     const { username } = useAppSelector((state) => state.auth);
-    const dispatch = useAppDispatch();
 
     const { sendMessage } = props;
 

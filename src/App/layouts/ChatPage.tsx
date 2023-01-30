@@ -61,28 +61,3 @@ export const ChatPage: React.FC = () => {
         </>
     );
 };
-
-// const ws = new WebSocket('ws://localhost:8000');
-// ws.onopen = () => {
-//     const message = {
-//         event: 'connection',
-//         username: username,
-//     };
-//     ws.send(JSON.stringify(message));
-//     console.log('connection opened');
-
-//     // dispatch(fetchMessages(username));
-// };
-
-// useEffect(() => {
-
-//     // dispatch(fetchMessages(username));
-// }, []);
-
-// useEffect(() => {
-// ws.addEventListener('message', (e) => {
-// console.log(e.data);
-// dispatch(createStateMessage(JSON.parse(e.data)));
-// console.log('message received');
-// });
-// }, []);

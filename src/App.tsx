@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import Navigation from './App/components/Navigation';
 import MainPage from './App/layouts/Mainpage';
 import LoginPage from './App/layouts/LoginPage';
-import LogOut from './App/components/Logout';
+import Logout from './App/components/Logout';
 
 const App: React.FC = () => {
     return (
@@ -13,7 +13,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<LoginPage />} />
                     <Route path="/main" element={<MainPage />} />
-                    <Route path="/logout" element={<LogOut />} />
+                    <Route path="/logout" element={<Logout />} />
                 </Routes>
             </Router>
         </>

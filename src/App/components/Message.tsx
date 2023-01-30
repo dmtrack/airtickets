@@ -1,4 +1,3 @@
-import React from 'react';
 import { IMessage } from '../interfaces/IMessage';
 import Typography from '@mui/material/Typography';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -6,7 +5,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../hook/redux';
-import { Stack } from '@mui/system';
 import Box from '@mui/material/Box';
 
 interface IMessageProps {

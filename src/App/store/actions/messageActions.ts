@@ -7,23 +7,8 @@ import {
 } from '../../interfaces/IMessage';
 import localStorageService from '../../utils/localStorage';
 import ky from 'ky';
-const URL = process.env.REACT_APP_BASE_URL;
 
-// export const fetchMessages = (messages: IMessage[], username: string) => {
-//     return async (dispatch: AppDispatch) => {
-//         try {
-//             dispatch(messageSlice.actions.fetchSuccess(messages));
-//             dispatch(
-//                 messageSlice.actions.setInboxMessages({
-//                     username: username,
-//                     messages: messages,
-//                 })
-//             );
-//         } catch (e) {
-//             dispatch(messageSlice.actions.fetchError(e as Error));
-//         }
-//     };
-// };
+const URL = process.env.REACT_APP_BASE_URL;
 
 export const fetchMessages = (messages: IMessage[], username: string) => {
     return async (dispatch: AppDispatch) => {

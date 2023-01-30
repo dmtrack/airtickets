@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hook/redux';
 import { logOut } from '../store/actions/auth.actions';
 
-const LogOut = () => {
+const Logout = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -18,4 +18,4 @@ const LogOut = () => {
     );
 };
 
-export default LogOut;
+export default Logout;

@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
 import { useInput } from '../hook/input';
 import { useAppDispatch } from '../hook/redux';
 import { login } from '../store/actions/auth.actions';
 import { fetchMessages } from '../store/actions/messageActions';
 import socket from '../utils/socket';
 import TextField from '@mui/material/TextField';
-import { height } from '@mui/system';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -30,7 +27,6 @@ const LoginPage: React.FC = () => {
             socket.emit('USER:JOIN', username);
         } else alert('Please, fill up all fields');
         socket.on('MESSAGES:RECEIVED', (messages) => {
-            console.log(messages);
             dispatch(fetchMessages(messages, username.value));
         });
     };
