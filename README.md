@@ -1,8 +1,8 @@
 ## email-client
 
-[Link to the deploy](https://email-client4.onrender.com)
+[deploy link](https://email-client4.onrender.com)
 
-[Link to the backend repository](https://github.com/project2devdmtrack/email_client-server/tree/master)
+[backend repository](https://github.com/project2devdmtrack/email_client-server/tree/master)
 
 ### Description
 
