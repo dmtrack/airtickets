@@ -6,13 +6,6 @@ import Box from '@mui/material/Box';
 import { CheckboxGroup } from './UI/CheckBoxGroup';
 
 const SearchPanel: React.FC = () => {
-    const dispatch = useAppDispatch();
-    // const selectInbox = () => {
-    //     dispatch(setInbox(''));
-    // };
-    // const selectOutbox = () => {
-    //     dispatch(setOutbox(username));
-    // };
     return (
         <>
             {' '}

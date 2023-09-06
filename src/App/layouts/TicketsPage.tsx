@@ -2,15 +2,20 @@ import React, { useEffect } from 'react';
 import SearchPanel from '../components/SearchPanel';
 import TicketList from '../components/TicketsList';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
+import data from '../moke-data/tickets.json';
+import { setTickets } from '../store/actions/ticketsActions';
+
 // import { setInbox } from '../store/actions/ticketsActions';
 
 export const TicketsPage: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { loading, error } = useAppSelector((state) => state.tickets);
+    const { loading, error, tickets } = useAppSelector(
+        (state) => state.tickets
+    );
 
-    // useEffect(() => {
-    //     dispatch(setInbox(username));
-    // }, []);
+    useEffect(() => {
+        dispatch(setTickets(data.tickets));
+    }, []);
 
     return (
         <>

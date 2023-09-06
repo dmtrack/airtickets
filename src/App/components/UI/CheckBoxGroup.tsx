@@ -1,10 +1,15 @@
 import { Box, FormControlLabel, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Checkbox from './Checkbox';
+import { setFilterAction } from '../../store/actions/ticketsActions';
+import { useAppDispatch } from '../../hook/redux';
+import { useTransformedFilter } from '../../hook/useTransformFilter';
 
 export const CheckboxGroup = () => {
+    const dispatch = useAppDispatch();
+
     const [DNC, setDNC] = React.useState({
-        all: true,
+        all: false,
         notransfer: false,
         onetransfer: false,
         twotransfers: false,
@@ -14,9 +19,31 @@ export const CheckboxGroup = () => {
     const { all, notransfer, onetransfer, twotransfers, threetransfers } = DNC;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDNC({ ...DNC, [event.target.name]: event.target.checked });
+        if (event.target.name === 'all' && DNC.all === true) {
+            console.log('all');
+            setDNC({
+                all: false,
+                notransfer: false,
+                onetransfer: false,
+                twotransfers: false,
+                threetransfers: false,
+            });
+        } else if (event.target.name === 'all' && DNC.all === false) {
+            setDNC({
+                all: true,
+                notransfer: true,
+                onetransfer: true,
+                twotransfers: true,
+                threetransfers: true,
+            });
+        } else {
+            setDNC({ ...DNC, [event.target.name]: event.target.checked });
+        }
     };
-    console.log(DNC);
+    const transformedFilter = useTransformedFilter(DNC);
+    useEffect(() => {
+        dispatch(setFilterAction(transformedFilter));
+    }, [DNC]);
 
     return (
         <div className='flex flex-col'>

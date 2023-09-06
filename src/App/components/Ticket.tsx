@@ -1,4 +1,4 @@
-import { ITicket } from '../interfaces/IMessage';
+import { ITicket } from '../interfaces/ITicket';
 import Typography from '@mui/material/Typography';
 import { useAppSelector } from '../hook/redux';
 import Box from '@mui/material/Box';
@@ -24,8 +24,6 @@ function Message({ ticket }: ITicketProps) {
         arrival_time,
         destination_name,
     } = ticket;
-
-    const { option } = useAppSelector((state) => state.tickets);
 
     return (
         <div>
@@ -58,7 +56,7 @@ function Message({ ticket }: ITicketProps) {
                             {ticket.arrival_date}
                         </div>
                     </Box>
-                    <Box className='w-full  flex flex-col justify-start  text-center text-gray-400 pt-1'>
+                    <Box className='w-full  flex flex-col justify-start  text-start text-gray-400 pt-1'>
                         {ticket.stops === 1 ? (
                             <div className='tracking-tighter'>
                                 {ticket.stops} ПЕРЕСАДКА

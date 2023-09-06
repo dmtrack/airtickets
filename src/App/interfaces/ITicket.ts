@@ -16,10 +16,14 @@ export interface ITicketState {
     loading: boolean;
     error: string;
     tickets: ITicket[];
-    option: string;
+    filters: number[];
 }
 
 export interface ITicketsOptions {
     messages: ITicket[];
     username: string | null;
 }
+
+export type FilterType = {
+    value: number;
+};

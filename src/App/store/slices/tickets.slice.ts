@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITicket, ITicketState } from '../../interfaces/IMessage';
+import { ITicket, ITicketState } from '../../interfaces/ITicket';
+import { FilterType } from '../../interfaces/ITicket';
 
 const initialState: ITicketState = {
     loading: false,
     error: '',
     tickets: [],
-    option: 'inbox',
+    filters: [],
 };
 
 interface ITicketsOptions {
@@ -14,7 +15,7 @@ interface ITicketsOptions {
 }
 
 export const ticketSlice = createSlice({
-    name: 'messages',
+    name: 'tickets',
     initialState,
     reducers: {
         fetching(state) {
@@ -29,12 +30,16 @@ export const ticketSlice = createSlice({
             state.loading = false;
             state.error = action.payload.message + ': ' + action.payload?.cause;
         },
-        // setInboxMessages(state, action: PayloadAction<ITicketsOptions>) {
-        //     state.option = 'inbox';
-        //     state.tickets = state.tickets.filter(
-        //         (m) => m.recepient === action.payload.username
-        //     );
-        // },
+
+        setFilter(state, action: PayloadAction<number[]>) {
+            console.log(action.type, 'payload');
+            state.filters = action.payload;
+            // state.tickets = state.tickets.filter((ticket: ITicket) =>
+            //     state.filters.every(
+            //         (filter: FilterType) => ticket.stops === filter.value
+            //     )
+            // );
+        },
         // setOutboxMessages(state, action: PayloadAction<ITicketsOptions>) {
         //     state.option = 'outbox';
         //     state.tickets = state.tickets.filter(
