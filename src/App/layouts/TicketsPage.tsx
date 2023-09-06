@@ -22,11 +22,12 @@ export const TicketsPage: React.FC = () => {
                     </p>
                 )}
                 <div className='container mx-auto'>
-                    <div className='relative overflow-x-auto '>
-                        <div className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
-                            <div className='flex h-500px overflow-y-auto justify-center'>
+                    <div>
+                        {/* <div className='w-full text-sm text-left text-gray-500 dark:text-gray-400'> */}
+
+                        <div className='w-full text-sm text-left'>
+                            <div className='flex h-500px justify-center gap-3'>
                                 <div className='flex-row'>
-                                    {' '}
                                     <SearchPanel />
                                 </div>
                                 <div className='w-2'></div>

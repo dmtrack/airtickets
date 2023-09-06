@@ -16,9 +16,9 @@ const SearchPanel: React.FC = () => {
     return (
         <>
             {' '}
-            <Box className=' w-[300px] h-1/3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+            <Box className=' w-[300px] h-1/3  shadow-md rounded-md bg-white font-sans'>
                 <Box className=' h-100 p-5'>
-                    <div className='pb-4 font-bold tracking-tighter'>
+                    <div className='pb-4 font-bold tracking-normal text-gray-500'>
                         ВАЛЮТА
                     </div>
                     <Box
@@ -36,7 +36,7 @@ const SearchPanel: React.FC = () => {
                         </ButtonGroup>{' '}
                     </Box>
                     <Box className='pt-8 '>
-                        <div className='pb-4 font-bold tracking-tighter'>
+                        <div className='pb-4 font-bold tracking-normal text-gray-500'>
                             КОЛИЧЕСТВО ПЕРЕСАДОК
                         </div>
                         <CheckboxGroup />

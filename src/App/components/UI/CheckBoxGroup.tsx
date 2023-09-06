@@ -1,5 +1,6 @@
-import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { Box, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
+import Checkbox from './Checkbox';
 
 export const CheckboxGroup = () => {
     const [DNC, setDNC] = React.useState({
@@ -28,7 +29,7 @@ export const CheckboxGroup = () => {
                     />
                 }
                 label={
-                    <Box component='div' fontSize={14} fontWeight={200}>
+                    <Box component='div' fontSize={14} fontWeight={300}>
                         Все
                     </Box>
                 }
@@ -42,7 +43,7 @@ export const CheckboxGroup = () => {
                     />
                 }
                 label={
-                    <Box component='div' fontSize={14} fontWeight={200}>
+                    <Box component='div' fontSize={14} fontWeight={300}>
                         Без пересадок
                     </Box>
                 }
@@ -56,7 +57,7 @@ export const CheckboxGroup = () => {
                     />
                 }
                 label={
-                    <Box component='div' fontSize={14} fontWeight={200}>
+                    <Box component='div' fontSize={14} fontWeight={300}>
                         1 пересадка
                     </Box>
                 }
@@ -70,7 +71,7 @@ export const CheckboxGroup = () => {
                     />
                 }
                 label={
-                    <Box component='div' fontSize={14} fontWeight={200}>
+                    <Box component='div' fontSize={14} fontWeight={300}>
                         2 пересадки
                     </Box>
                 }
@@ -84,7 +85,7 @@ export const CheckboxGroup = () => {
                     />
                 }
                 label={
-                    <Box component='div' fontSize={14} fontWeight={200}>
+                    <Box component='div' fontSize={14} fontWeight={300}>
                         3 пересадки
                     </Box>
                 }

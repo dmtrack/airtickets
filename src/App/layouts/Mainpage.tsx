@@ -7,7 +7,7 @@ const MainPage: React.FC = () => {
 
     return (
         <>
-            <div className='container mx-auto'>
+            <div className='mx-auto bg-[rgba(244,246,249)]'>
                 <Header />
                 <TicketsPage />
             </div>

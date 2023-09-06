@@ -1,16 +1,24 @@
-import { makeStyles } from '@mui/styles';
 import { Checkbox as MUICheckbox } from '@mui/material';
 
-const useStyles = makeStyles({
-    input: {
-        height: '20px',
-        boxSizing: 'border-box', // <-- add this
-    },
-});
+interface ICheckBoxProps {
+    checked: boolean;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name: string;
+}
 
-const Checkbox = () => {
-    const classes = useStyles();
-    return <MUICheckbox color='primary' classes={{ root: classes.input }} />;
+const Checkbox = ({ checked, onChange, name }: ICheckBoxProps) => {
+    return (
+        <MUICheckbox
+            name={name}
+            color='primary'
+            checked={checked}
+            onChange={onChange}
+            sx={{
+                height: '35px',
+                boxSizing: 'border-box', // <-- add this
+            }}
+        />
+    );
 };
 
 export default Checkbox;
