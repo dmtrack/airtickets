@@ -1,7 +1,5 @@
 ## Air tickets
 
-[deploy link]()
-
 ## Preview
 
 ![Preview](./src/App/assets/preview.png)
