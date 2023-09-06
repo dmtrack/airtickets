@@ -1,25 +1,14 @@
-import { ITicket } from '../interfaces/IMessage';
+import { ITicket } from '../interfaces/ITicket';
 import Typography from '@mui/material/Typography';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../hook/redux';
 import Box from '@mui/material/Box';
+import logo from '../assets/plane.webp';
+import turkish from '../assets/turkish.webp';
+import FlightLand from '@mui/icons-material/FlightLand';
 
 interface ITicketProps {
     ticket: ITicket;
 }
-
-// arrival_date: string;
-// arrival_time: string;
-// carrier: string;
-// departure_date: string;
-// destination: string;
-// origin: string;
-// origin_name: string;
-// price: number;
-// stops: number;
 
 function Message({ ticket }: ITicketProps) {
     let {
@@ -29,85 +18,79 @@ function Message({ ticket }: ITicketProps) {
         price,
         stops,
         departure_date,
+        departure_time,
         destination,
         arrival_date,
         arrival_time,
+        destination_name,
     } = ticket;
-    // let formatedDate = `${date.getDate()}.${
-    //     date.getMonth() + 1
-    // } / ${date.getHours()}:${date.getMinutes()}`;
-
-    const { option } = useAppSelector((state) => state.tickets);
 
     return (
         <div>
-            <Accordion sx={{ minWidth: '350px' }}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'>
-                    <Typography component={'span'}>
-                        <div>
-                            {option === 'inbox' ? (
-                                <div>
-                                    <div className=''>
-                                        <Box>
-                                            <span className='font-semibold '>
-                                                from:
-                                            </span>
-                                            <span className='font-thin'>
-                                                origin_name: {origin_name}-
-                                                {destination}
-                                            </span>
-                                        </Box>
+            <Box className='w-[700px] h-[200px] shadow-md rounded-md bg-white flex'>
+                <Box className='w-1/3 border-r'>
+                    <Box className='m-5 flex flex-col h-[150px] justify-between '>
+                        <img
+                            className='h-[60px] w-100  object-cover object-center self-center'
+                            src={turkish}
+                            alt='logo image'
+                        />
+                        <button
+                            className='bg-[rgba(260,120,50)] h-[70px] w-full rounded-md pointer'
+                            type='submit'>
+                            <div className='text-white text-xl font-inter font-medium mr-6 ml-6  '>
+                                Купить за {ticket.price}
+                            </div>
+                        </button>
+                    </Box>
+                </Box>
+                <Box className='flex flex-auto m-5'>
+                    <Box className='w-full justify-center text-center '>
+                        <div className='text-4xl text-gray-600 text-start pb-3'>
+                            {ticket.arrival_time}
+                        </div>
+                        <div className='text-sm text-gray-600 text-start font-bold pb-1'>
+                            {ticket.origin}, {ticket.origin_name}
+                        </div>
+                        <div className='text-sm text-gray-400 text-start'>
+                            {ticket.arrival_date}
+                        </div>
+                    </Box>
+                    <Box className='w-full  flex flex-col justify-start  text-start text-gray-400 pt-1'>
+                        {ticket.stops === 1 ? (
+                            <div className='tracking-tighter'>
+                                {ticket.stops} ПЕРЕСАДКА
+                            </div>
+                        ) : ticket.stops === 5 ? (
+                            <div className='tracking-tighter'>
+                                БЕЗ ПЕРЕСАДОК
+                            </div>
+                        ) : (
+                            <div className='tracking-tighter'>
+                                {ticket.stops} ПЕРЕСАДКИ
+                            </div>
+                        )}
 
-                                        <Box>
-                                            <span className='font-semibold'>
-                                                date:
-                                            </span>{' '}
-                                            <span className='font-thin'>
-                                                departure_date: {departure_date}
-                                            </span>
-                                        </Box>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div>
-                                    {/* <div className=''>
-                                        <Box>
-                                            <span className='font-semibold'>
-                                                to:
-                                            </span>
-                                            <span className='font-thin'>
-                                                _{recepient}
-                                            </span>
-                                        </Box>
-                                        <Box>
-                                            <span className='font-semibold'>
-                                                date:
-                                            </span>{' '}
-                                            <span className='font-thin'>
-                                                {formatedDate}
-                                            </span>
-                                        </Box>
-                                    </div> */}
-                                </div>
-                            )}
+                        <Box className='flex justify-center'>
+                            <div className='w-3/4 h-3 border-b'></div>
+                            <div className='pl-2'>
+                                <FlightLand />
+                            </div>
+                        </Box>
+                    </Box>
+                    <Box className='w-full justify-center text-end pl-2 '>
+                        <div className='text-4xl text-gray-600 text-start pb-3'>
+                            {ticket.departure_time}
                         </div>
-                        <div>
-                            <span className='font-semibold'>Subject:</span>{' '}
-                            <span className='font-thin'>price: {price}</span>
+                        <div className='text-sm text-gray-600 text-start font-bold pb-1'>
+                            {ticket.destination}, {ticket.destination_name}
                         </div>
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        <span className='font-style: italic'>
-                            stops: {stops}
-                        </span>
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
+                        <div className='text-sm text-gray-400 text-start'>
+                            {ticket.departure_date}
+                        </div>
+                    </Box>
+                </Box>
+            </Box>{' '}
         </div>
     );
 }

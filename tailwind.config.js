@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     darkMode: false, // or 'media' or 'class'
@@ -19,6 +21,9 @@ module.exports = {
             colors: {
                 'regal-blue': '#243c5a',
                 'bleed-blue': '#3B82F6',
+            },
+            fontFamily: {
+                inter: ['Inter', ...defaultTheme.fontFamily.sans],
             },
         },
     },
