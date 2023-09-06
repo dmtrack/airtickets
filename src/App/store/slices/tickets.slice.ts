@@ -23,7 +23,7 @@ export const ticketSlice = createSlice({
         },
         fetchSuccess(state, action: PayloadAction<ITicket[]>) {
             state.loading = false;
-            state.tickets = action.payload;
+            state.tickets = action.payload.sort((a, b) => a.price - b.price);
         },
 
         fetchError(state, action: PayloadAction<Error>) {
@@ -32,13 +32,7 @@ export const ticketSlice = createSlice({
         },
 
         setFilter(state, action: PayloadAction<number[]>) {
-            console.log(action.type, 'payload');
             state.filters = action.payload;
-            // state.tickets = state.tickets.filter((ticket: ITicket) =>
-            //     state.filters.every(
-            //         (filter: FilterType) => ticket.stops === filter.value
-            //     )
-            // );
         },
         // setOutboxMessages(state, action: PayloadAction<ITicketsOptions>) {
         //     state.option = 'outbox';

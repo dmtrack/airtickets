@@ -24,10 +24,8 @@ export const setTickets = (tickets: ITicket[]) => {
 };
 
 export const setFilterAction = (filter: number[]) => {
-    console.log(filter, 'filterACtion');
     return async (dispatch: AppDispatch) => {
         try {
-            console.log('filter1111!!!');
             dispatch(ticketSlice.actions.setFilter(filter));
         } catch (e) {
             dispatch(ticketSlice.actions.fetchError(e as Error));

@@ -9,7 +9,7 @@ const SearchPanel: React.FC = () => {
     return (
         <>
             {' '}
-            <Box className=' w-[300px] h-1/3  shadow-md rounded-md bg-white font-sans'>
+            <Box className=' w-[300px] min-h-[450px]  shadow-md rounded-md bg-white font-sans'>
                 <Box className=' h-100 p-5'>
                     <div className='pb-4 font-bold tracking-normal text-gray-500'>
                         ВАЛЮТА

@@ -12,17 +12,27 @@ export type TicketsListProps = {
 const TicketsList = () => {
     const { tickets } = useAppSelector((state) => state.tickets);
     const { filters } = useAppSelector((state) => state.tickets);
-    // const sortedTickets: ITicket[] = tickets.sort((a, b) => a.price - b.price);
-    console.log(filters, 'filters');
+    console.log(filters);
+    const filteredTickets = tickets.filter((ticket: ITicket) => {
+        return filters.find((filter) => {
+            console.log(Number(ticket.stops) === filter, 'equal');
+            return ticket.stops === filter;
+        });
+    });
 
     return (
         <div className='container'>
-            {tickets &&
-                tickets.map((ticket) => (
-                    <div className='pb-5' key={uuid()}>
-                        <Ticket ticket={ticket} />
-                    </div>
-                ))}
+            {filteredTickets.length > 0
+                ? filteredTickets.map((ticket) => (
+                      <div className='pb-5' key={uuid()}>
+                          <Ticket ticket={ticket} />
+                      </div>
+                  ))
+                : tickets.map((ticket) => (
+                      <div className='pb-5' key={uuid()}>
+                          <Ticket ticket={ticket} />
+                      </div>
+                  ))}
         </div>
     );
 };

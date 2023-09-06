@@ -18,32 +18,35 @@ export const CheckboxGroup = () => {
 
     const { all, notransfer, onetransfer, twotransfers, threetransfers } = DNC;
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.name === 'all' && DNC.all === true) {
-            console.log('all');
-            setDNC({
-                all: false,
-                notransfer: false,
-                onetransfer: false,
-                twotransfers: false,
-                threetransfers: false,
-            });
-        } else if (event.target.name === 'all' && DNC.all === false) {
-            setDNC({
-                all: true,
-                notransfer: true,
-                onetransfer: true,
-                twotransfers: true,
-                threetransfers: true,
-            });
-        } else {
-            setDNC({ ...DNC, [event.target.name]: event.target.checked });
-        }
-    };
+    const handleChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            if (event.target.name === 'all' && DNC.all === true) {
+                setDNC({
+                    all: false,
+                    notransfer: false,
+                    onetransfer: false,
+                    twotransfers: false,
+                    threetransfers: false,
+                });
+            } else if (event.target.name === 'all' && DNC.all === false) {
+                setDNC({
+                    all: true,
+                    notransfer: true,
+                    onetransfer: true,
+                    twotransfers: true,
+                    threetransfers: true,
+                });
+            } else {
+                setDNC({ ...DNC, [event.target.name]: event.target.checked });
+            }
+        },
+        [DNC]
+    );
     const transformedFilter = useTransformedFilter(DNC);
+
     useEffect(() => {
         dispatch(setFilterAction(transformedFilter));
-    }, [DNC]);
+    }, [DNC, dispatch]);
 
     return (
         <div className='flex flex-col'>

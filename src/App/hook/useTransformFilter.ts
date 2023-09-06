@@ -1,20 +1,26 @@
+import { useMemo } from 'react';
+
 interface IFilterObject {
     [key: string]: boolean;
 }
 
 export const useTransformedFilter = (DNC: IFilterObject) => {
-    const filter: string[] = Object.entries(DNC)
-        .map((el) => {
-            if (el[1] === true && el[0] !== 'all') {
-                return el[0];
-            } else return '';
-        })
-        .filter((el) => el !== '');
+    const filter: string[] = useMemo(
+        () =>
+            Object.entries(DNC)
+                .map((el) => {
+                    if (el[1] === true && el[0] !== 'all') {
+                        return el[0];
+                    } else return '';
+                })
+                .filter((el) => el !== ''),
+        [DNC]
+    );
 
     return filter.map((el) => {
         switch (el) {
             case 'notransfer': {
-                return 0;
+                return 5;
             }
             case 'onetransfer': {
                 return 1;

@@ -5,7 +5,7 @@ import { TicketsPage } from './TicketsPage';
 const MainPage: React.FC = () => {
     return (
         <>
-            <div className='mx-auto bg-[rgba(244,246,249)]'>
+            <div className='mx-auto bg-[rgba(244,246,249)] min-h-screen'>
                 <Header />
                 <TicketsPage />
             </div>
