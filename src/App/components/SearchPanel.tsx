@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../hook/redux';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { CheckboxGroup } from './UI/CheckBoxGroup';
 
 const SearchPanel: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -15,13 +16,32 @@ const SearchPanel: React.FC = () => {
     return (
         <>
             {' '}
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <ButtonGroup
-                    variant='outlined'
-                    aria-label='outlined primary button group'>
-                    <Button>Inbox</Button>
-                    <Button>Outbox</Button>
-                </ButtonGroup>{' '}
+            <Box className=' w-[300px] h-1/3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+                <Box className=' h-100 p-5'>
+                    <div className='pb-4 font-bold tracking-tighter'>
+                        ВАЛЮТА
+                    </div>
+                    <Box
+                        className='w-full'
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'left',
+                        }}>
+                        <ButtonGroup
+                            size='large'
+                            variant='outlined'
+                            aria-label='outlined primary button group'>
+                            <Button>RUB</Button>
+                            <Button>USD</Button> <Button>EUR</Button>
+                        </ButtonGroup>{' '}
+                    </Box>
+                    <Box className='pt-8 '>
+                        <div className='pb-4 font-bold tracking-tighter'>
+                            КОЛИЧЕСТВО ПЕРЕСАДОК
+                        </div>
+                        <CheckboxGroup />
+                    </Box>
+                </Box>
             </Box>
         </>
     );

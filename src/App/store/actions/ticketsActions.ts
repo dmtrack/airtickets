@@ -1,7 +1,6 @@
 import { ticketSlice } from '../slices/tickets.slice';
 import { AppDispatch } from '..';
 import { ITicket, ITicketState } from '../../interfaces/IMessage';
-import ky from 'ky';
 
 const URL = process.env.REACT_APP_BASE_URL;
 
