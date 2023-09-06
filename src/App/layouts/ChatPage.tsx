@@ -1,56 +1,40 @@
 import React, { useEffect } from 'react';
-import ControlPanel from '../components/Controlpanel';
-import MessagesList from '../components/Messageslist';
-import NewMessagePanel from '../components/Newmessagepanel';
+import SearchPanel from '../components/SearchPanel';
+import TicketList from '../components/TicketsList';
 import { useAppDispatch, useAppSelector } from '../hook/redux';
-import { ICreateMessage } from '../interfaces/IMessage';
-import { createStateMessage, setInbox } from '../store/actions/messageActions';
-import socket from '../utils/socket';
+// import { setInbox } from '../store/actions/ticketsActions';
 
-export const ChatPage: React.FC = () => {
+export const TicketsPage: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { username } = useAppSelector((state) => state.auth);
-    const { loading, error } = useAppSelector((state) => state.messages);
+    const { loading, error } = useAppSelector((state) => state.tickets);
 
-    const sendMessage = (message: ICreateMessage) => {
-        socket.emit('MESSAGE:CREATED', message);
-    };
-    useEffect(() => {
-        dispatch(setInbox(username));
-    }, []);
-
-    useEffect(() => {
-        socket.on('MESSAGE:DELIVERED', (message) => {
-            dispatch(createStateMessage(message));
-        });
-    }, []);
+    // useEffect(() => {
+    //     dispatch(setInbox(username));
+    // }, []);
 
     return (
         <>
             <div>
-                {loading && <p className="text-center text-lg">Loading...</p>}
+                {loading && <p className='text-center text-lg'>Loading...</p>}
                 {error && (
-                    <p className="pt-10 text-center text-lg text-red-500">
+                    <p className='pt-10 text-center text-lg text-red-500'>
                         {error}
                     </p>
                 )}
-                <div className="container mx-auto">
-                    <div className="relative overflow-x-auto ">
-                        <div className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <div className="flex h-500px overflow-y-auto justify-center">
-                                <div className="flex-row">
+                <div className='container mx-auto'>
+                    <div className='relative overflow-x-auto '>
+                        <div className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+                            <div className='flex h-500px overflow-y-auto justify-center'>
+                                <div className='flex-row'>
                                     {' '}
-                                    <ControlPanel />
-                                    <MessagesList />
+                                    <SearchPanel />
                                 </div>
-                                <div className="w-2"></div>
+                                <div className='w-2'></div>
 
-                                <div className="flex-row">
-                                    <NewMessagePanel
-                                        sendMessage={sendMessage}
-                                    />
+                                <div className='flex-row'>
+                                    <TicketList />
                                 </div>
-                                <div className="w-4"></div>
+                                <div className='w-4'></div>
                             </div>
 
                             <div></div>

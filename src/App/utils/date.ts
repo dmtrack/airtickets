@@ -1,10 +1,10 @@
-interface IDateResponce {
+interface IDateResponse {
     day: number;
     month: number;
     year: number;
 }
 
-export const getDate = (): IDateResponce => {
+export const getDate = (): IDateResponse => {
     const date = new Date();
     const [month, day, year] = [
         date.getMonth(),

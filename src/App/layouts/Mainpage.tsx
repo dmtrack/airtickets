@@ -1,27 +1,14 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../hook/redux';
-import { ChatPage } from './ChatPage';
+import { useAppDispatch, useAppSelector } from '../hook/redux';
+import { TicketsPage } from './ChatPage';
 
 const MainPage: React.FC = () => {
-    const { isAuth } = useAppSelector((state) => state.auth);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isAuth) {
-            navigate('/');
-        }
-    }, [isAuth]);
+    const dispatch = useAppDispatch();
 
     return (
         <>
-            {isAuth ? (
-                <div className="container mx-auto  pt-5">
-                    <ChatPage />
-                </div>
-            ) : (
-                navigate('/login')
-            )}
+            <div className='container mx-auto  pt-5'>
+                <TicketsPage />
+            </div>
         </>
     );
 };

@@ -1,59 +1,23 @@
-export interface IMessage {
-    id: number;
-    author: string;
-    title: string;
-    text: string;
-    recepient: string;
-    timestamp: number;
+export interface ITicket {
+    arrival_date: string;
+    arrival_time: string;
+    carrier: string;
+    departure_date: string;
+    destination: string;
+    origin: string;
+    origin_name: string;
+    price: number;
+    stops: number;
 }
 
-export interface ICreateMessage {
-    id: number;
-    author: string;
-    title: string;
-    text: string;
-    recepient: string;
-    timestamp: number;
-}
-
-export interface IMessageState {
+export interface ITicketState {
     loading: boolean;
     error: string;
-    messages: IMessage[];
+    tickets: ITicket[];
     option: string;
 }
 
-export interface IServerResponce<T> {
-    config: {};
-    data: T[];
-    message: string;
-    headers: {};
-    request: {};
-    status: number;
-    statusText: string;
-}
-
-export type MessagesListProps = {
-    mesages: IMessage[];
-    loading: boolean;
-};
-
-export type DeleteUserProp = string[];
-
-export interface IMessagesOptions {
-    messages: IMessage[];
+export interface ITicketsOptions {
+    messages: ITicket[];
     username: string | null;
-}
-
-export interface ISendMessageProps {
-    sendMessage: (params: any) => any;
-}
-
-export interface ICreateMessageProps {
-    setRecepient: (params: any) => any;
-    setTitle: (params: any) => any;
-    setText: (params: any) => any;
-    recepient: string;
-    text: string;
-    title: string;
 }

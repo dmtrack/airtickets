@@ -1,19 +1,13 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import Navigation from './App/components/Navigation';
-import MainPage from './App/layouts/Mainpage';
-import LoginPage from './App/layouts/LoginPage';
-import LogoutUser from './App/components/LogoutUser';
+import MainPage from './App/layouts/MainPage';
 
 const App: React.FC = () => {
     return (
         <>
             <Router>
-                <Navigation />
                 <Routes>
-                    <Route path="/" element={<LoginPage />} />
-                    <Route path="/main" element={<MainPage />} />
-                    <Route path="/logout" element={<LogoutUser />} />
+                    <Route path='/' element={<MainPage />} />
                 </Routes>
             </Router>
         </>
