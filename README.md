@@ -4,7 +4,7 @@
 
 ## Preview
 
-![Preview](assets/preview.png)
+![Preview](./src/App/assets/preview.png)
 
 ## Stack
 
