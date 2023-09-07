@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import logo from '../assets/plane.webp';
 import turkish from '../assets/turkish.webp';
 import FlightLand from '@mui/icons-material/FlightLand';
+import { dateFormat } from '../utils/date';
 
 interface ITicketProps {
     ticket: ITicket;
@@ -24,6 +25,9 @@ function Message({ ticket }: ITicketProps) {
         arrival_time,
         destination_name,
     } = ticket;
+
+    const depDate = dateFormat(departure_date);
+    const arrDate = dateFormat(arrival_date);
 
     return (
         <div>
@@ -53,7 +57,7 @@ function Message({ ticket }: ITicketProps) {
                             {ticket.origin}, {ticket.origin_name}
                         </div>
                         <div className='text-sm text-gray-400 text-start'>
-                            {ticket.arrival_date}
+                            {arrDate}
                         </div>
                     </Box>
                     <Box className='w-full  flex flex-col justify-start  text-start text-gray-400 pt-1'>
@@ -80,13 +84,13 @@ function Message({ ticket }: ITicketProps) {
                     </Box>
                     <Box className='w-full justify-center text-end pl-2 '>
                         <div className='text-4xl text-gray-600 text-start pb-3'>
-                            {ticket.departure_time}
+                            {departure_time}
                         </div>
                         <div className='text-sm text-gray-600 text-start font-bold pb-1'>
                             {ticket.destination}, {ticket.destination_name}
                         </div>
                         <div className='text-sm text-gray-400 text-start'>
-                            {ticket.departure_date}
+                            {depDate}
                         </div>
                     </Box>
                 </Box>
