@@ -1,5 +1,4 @@
 import { useAppSelector } from '../hook/redux';
-import data from '../moke-data/tickets.json';
 import Ticket from './Ticket';
 import { ITicket } from '../interfaces/ITicket';
 import uuid from 'uuidv4';
@@ -12,12 +11,12 @@ export type TicketsListProps = {
 const TicketsList = () => {
     const { tickets } = useAppSelector((state) => state.tickets);
     const { filters } = useAppSelector((state) => state.tickets);
-    console.log(filters);
     const filteredTickets = tickets.filter((ticket: ITicket) => {
-        return filters.find((filter) => {
-            console.log(Number(ticket.stops) === filter, 'equal');
+        let filterResult = filters.find((filter) => {
             return ticket.stops === filter;
         });
+        if (filterResult === 0) filterResult = 1;
+        return filterResult;
     });
 
     return (
