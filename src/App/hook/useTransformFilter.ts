@@ -20,7 +20,7 @@ export const useTransformedFilter = (DNC: IFilterObject) => {
     return filter.map((el) => {
         switch (el) {
             case 'notransfer': {
-                return 5;
+                return 0;
             }
             case 'onetransfer': {
                 return 1;

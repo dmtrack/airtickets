@@ -36,7 +36,7 @@
             "arrival_date": "12.05.18",
             "arrival_time": "18:10",
             "carrier": "SU",
-            "stops": 5,
+            "stops": 0,
             "price": 15300
         },
         {
@@ -114,7 +114,7 @@
             "arrival_date": "12.05.18",
             "arrival_time": "15:25",
             "carrier": "TK",
-            "stops": 5,
+            "stops": 0,
             "price": 14250
         },
         {
@@ -153,7 +153,7 @@
             "arrival_date": "12.05.18",
             "arrival_time": "16:15",
             "carrier": "S7",
-            "stops": 5,
+            "stops": 0,
             "price": 17400
         }
     ]

@@ -61,7 +61,7 @@ function Message({ ticket }: ITicketProps) {
                             <div className='tracking-tighter'>
                                 {ticket.stops} ПЕРЕСАДКА
                             </div>
-                        ) : ticket.stops === 5 ? (
+                        ) : ticket.stops === 0 ? (
                             <div className='tracking-tighter'>
                                 БЕЗ ПЕРЕСАДОК
                             </div>
