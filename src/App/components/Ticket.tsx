@@ -25,7 +25,6 @@ function Message({ ticket }: ITicketProps) {
         arrival_time,
         destination_name,
     } = ticket;
-
     const depDate = dateFormat(departure_date);
     const arrDate = dateFormat(arrival_date);
 
