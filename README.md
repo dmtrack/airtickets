@@ -1,6 +1,7 @@
 ## Air tickets
-its a test-task for the company
-[deploy](https://airtickets-delta.vercel.app/)
+
+
+[deploy](https://airtickets-eosin.vercel.app/)
 
 ## Preview
 
