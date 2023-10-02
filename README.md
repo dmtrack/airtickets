@@ -1,6 +1,6 @@
 ## Air tickets
 
-[deploy](https://airtickets-delta.vercel.app/)
+[deploy](https://airtickets-eosin.vercel.app/)
 
 ## Preview
 
